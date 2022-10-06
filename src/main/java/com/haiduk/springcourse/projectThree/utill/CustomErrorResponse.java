@@ -1,10 +1,10 @@
 package com.haiduk.springcourse.projectThree.utill;
 
-public class SensorErrorResponse {
+public class CustomErrorResponse {
     private String message;
     private long timestamp;
 
-    public SensorErrorResponse(String message, long timestamp) {
+    public CustomErrorResponse(String message, long timestamp) {
         this.message = message;
         this.timestamp = timestamp;
     }

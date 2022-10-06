@@ -5,7 +5,7 @@ import com.haiduk.springcourse.projectThree.dto.SensorDTO;
 import com.haiduk.springcourse.projectThree.exception.SensorNotCreatedException;
 import com.haiduk.springcourse.projectThree.exception.SensorNotFoundException;
 import com.haiduk.springcourse.projectThree.services.SensorsService;
-import com.haiduk.springcourse.projectThree.utill.SensorErrorResponse;
+import com.haiduk.springcourse.projectThree.utill.CustomErrorResponse;
 import com.haiduk.springcourse.projectThree.utill.SensorValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,8 +52,8 @@ public class SensorsController {
     }
 
     @ExceptionHandler
-    private ResponseEntity<SensorErrorResponse> handleException(SensorNotCreatedException e) {
-        SensorErrorResponse response = new SensorErrorResponse(
+    private ResponseEntity<CustomErrorResponse> handleException(SensorNotCreatedException e) {
+        CustomErrorResponse response = new CustomErrorResponse(
                 e.getMessage(),
                 System.currentTimeMillis()
         );
@@ -71,8 +71,8 @@ public class SensorsController {
     }
 
     @ExceptionHandler
-    private ResponseEntity<SensorErrorResponse> handleException(SensorNotFoundException e) {
-        SensorErrorResponse response = new SensorErrorResponse(
+    private ResponseEntity<CustomErrorResponse> handleException(SensorNotFoundException e) {
+        CustomErrorResponse response = new CustomErrorResponse(
                 "Sensor with this id wasn't found!",
                 System.currentTimeMillis()
         );
