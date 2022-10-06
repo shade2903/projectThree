@@ -1,6 +1,7 @@
 package com.haiduk.springcourse.projectThree.services;
 
 import com.haiduk.springcourse.projectThree.entities.Sensor;
+import com.haiduk.springcourse.projectThree.exception.SensorNotFoundException;
 import com.haiduk.springcourse.projectThree.repositories.SensorsRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class SensorsService {
 
     public Sensor findOneById(int id){
       Optional<Sensor> foundSensor = sensorsRepositories.findById(id);
-      return foundSensor.orElse(null);
+      return foundSensor.orElseThrow(SensorNotFoundException::new);
     }
     public List<Sensor> findAllSensors(){
       return sensorsRepositories.findAll();

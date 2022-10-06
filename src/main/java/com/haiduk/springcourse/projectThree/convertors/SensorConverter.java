@@ -24,7 +24,7 @@ public class SensorConverter {
         return modelMapper.map(sensor, SensorDTO.class);
      }
 
-     public List<SensorDTO> convertToListSensorDTO(List<Sensor> sensors){
+     public List<SensorDTO> convertToSensorDTO(List<Sensor> sensors){
         return sensors.stream().map(this::convertToSensorDTO)
                 .collect(Collectors.toList());
      }

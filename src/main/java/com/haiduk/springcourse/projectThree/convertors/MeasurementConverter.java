@@ -26,7 +26,7 @@ public class MeasurementConverter {
         return modelMapper.map(measurement, MeasurementDTO.class);
     }
 
-    public List<MeasurementDTO> converterToListMeasurementDTO(List<Measurement> measurements){
+    public List<MeasurementDTO> converterToMeasurementDTO(List<Measurement> measurements){
         return measurements.stream().map(this::converterToMeasurementDTO)
                 .collect(Collectors.toList());
     }
