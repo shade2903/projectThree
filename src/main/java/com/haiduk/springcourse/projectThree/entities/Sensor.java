@@ -11,24 +11,22 @@ public class Sensor {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotEmpty(message = "name should not be empty")
     @Size(min = 3, max = 30, message = "Name should be between 2 and 30 characters")
     @Column(name="name")
     private String name;
 
-    @OneToMany(mappedBy = "sensor")
-    private List<Measurement> measurements;
 
     public Sensor() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -40,11 +38,13 @@ public class Sensor {
         this.name = name;
     }
 
-    public List<Measurement> getMeasurements() {
-        return measurements;
-    }
 
-    public void setMeasurements(List<Measurement> measurements) {
-        this.measurements = measurements;
+
+    @Override
+    public String toString() {
+        return "Sensor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

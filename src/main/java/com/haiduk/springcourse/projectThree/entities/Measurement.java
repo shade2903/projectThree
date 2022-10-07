@@ -3,6 +3,7 @@ package com.haiduk.springcourse.projectThree.entities;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -15,17 +16,17 @@ public class Measurement {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    @NotEmpty(message = "value should be between -100 and 100 degree")
+    @NotNull(message = "value should be between -100 and 100 degree")
     @Min(value = -100, message = "value should be more than -100")
-    @Min(value = 100, message = "value should be less than 100")
+    @Max(value = 100, message = "value should be less than 100")
     @Column(name = "value")
-    private double value;
+    private Double value;
 
-    @NotEmpty(message = "raining should be true or false")
+    @NotNull(message = "raining should be true or false")
     @Column(name = "raining")
-    private boolean raining;
+    private Boolean raining;
 
     @NotNull
     @ManyToOne
@@ -39,27 +40,27 @@ public class Measurement {
     public Measurement() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public double getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
-    public boolean isRaining() {
+    public Boolean getRaining() {
         return raining;
     }
 
-    public void setRaining(boolean raining) {
+    public void setRaining(Boolean raining) {
         this.raining = raining;
     }
 
@@ -69,5 +70,24 @@ public class Measurement {
 
     public void setSensor(Sensor sensor) {
         this.sensor = sensor;
+    }
+
+    public LocalDateTime getMeasurementTime() {
+        return measurementTime;
+    }
+
+    public void setMeasurementTime(LocalDateTime measurementTime) {
+        this.measurementTime = measurementTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Measurement{" +
+                "id=" + id +
+                ", value=" + value +
+                ", raining=" + raining +
+                ", sensor=" + sensor +
+                ", measurementTime=" + measurementTime +
+                '}';
     }
 }

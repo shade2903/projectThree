@@ -2,6 +2,7 @@ package com.haiduk.springcourse.projectThree.controllers;
 
 import com.haiduk.springcourse.projectThree.convertors.SensorConverter;
 import com.haiduk.springcourse.projectThree.dto.SensorDTO;
+import com.haiduk.springcourse.projectThree.entities.Sensor;
 import com.haiduk.springcourse.projectThree.exception.SensorNotCreatedException;
 import com.haiduk.springcourse.projectThree.exception.SensorNotFoundException;
 import com.haiduk.springcourse.projectThree.services.SensorsService;
@@ -32,7 +33,7 @@ public class SensorsController {
         this.sensorValidator = sensorValidator;
     }
 
-    @PostMapping
+    @PostMapping("/registration")
     public ResponseEntity<HttpStatus> create(@RequestBody @Valid SensorDTO sensorDTO,
                                              BindingResult bindingResult) {
         sensorValidator.validate(sensorConverter.convertToSensor(sensorDTO), bindingResult);
@@ -60,10 +61,11 @@ public class SensorsController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/registration")
+    @GetMapping()
     public List<SensorDTO> getSensors() {
         return sensorConverter.convertToSensorDTO(sensorsService.findAllSensors());
     }
+
 
     @GetMapping("/{id}")
     public SensorDTO getSensor(@PathVariable("id") int id) {

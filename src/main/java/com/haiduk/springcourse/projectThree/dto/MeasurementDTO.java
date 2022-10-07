@@ -1,10 +1,13 @@
 package com.haiduk.springcourse.projectThree.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.haiduk.springcourse.projectThree.entities.Sensor;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -12,13 +15,13 @@ import java.time.LocalDateTime;
 
 public class MeasurementDTO {
 
-    @NotEmpty(message = "value should be between -100 and 100 degree")
+    @NotNull(message = "value should be between -100 and 100 degree")
     @Min(value = -100, message = "value should be more than -100")
-    @Min(value = 100, message = "value should be less than 100")
-    private double value;
+    @Max(value = 100, message = "value should be less than 100")
+    private Double value;
 
-    @NotEmpty(message = "raining should be true or false")
-    private boolean raining;
+    @NotNull(message = "raining should be true or false")
+    private Boolean raining;
 
     @NotNull
     @ManyToOne
@@ -28,19 +31,19 @@ public class MeasurementDTO {
     public MeasurementDTO() {
     }
 
-    public double getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
-    public boolean isRaining() {
+    public Boolean getRaining() {
         return raining;
     }
 
-    public void setRaining(boolean raining) {
+    public void setRaining(Boolean raining) {
         this.raining = raining;
     }
 
